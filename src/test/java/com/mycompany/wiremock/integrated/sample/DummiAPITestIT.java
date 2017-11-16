@@ -49,10 +49,8 @@ public class DummiAPITestIT {
     }
 
     private String convertInputStreamToString(InputStream content) {
-        Scanner scanner = new Scanner(content, "UTF-8");
-        String string = scanner.useDelimiter("\\Z").next();
-        scanner.close();
-        return string;
+        Scanner scanner = new Scanner(content, "UTF-8").useDelimiter("\\Z");
+        return scanner.hasNext() ? scanner.next() : "";    
     }
     
     private void createAStub(int statusCode, String aMessage) {
